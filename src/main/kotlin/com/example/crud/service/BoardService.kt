@@ -1,10 +1,9 @@
 package com.example.crud.service
-
-import com.example.crud.dto.BoardDto
 import com.example.crud.model.Board
 import com.example.crud.repository.BoardRepository
 import jakarta.persistence.EntityNotFoundException
 import org.springframework.data.repository.findByIdOrNull
+
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDateTime
