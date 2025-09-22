@@ -17,15 +17,15 @@ data class Board(
     @GeneratedValue(strategy = GenerationType.IDENTITY) //id값이 자동으로 생성되고 기본키 생성을 DB에 위임
     val id:Long=0,
 
-    val school: String,
-    val studentId: String,
-    val name: String,
-    val major: String,
-    val content:String,
+    var school: String,
+    var studentId: String,
+    var name: String,
+    var major: String,
+    var content:String,
 
     @Column(nullable = false, updatable = false)
     val createdAt: LocalDateTime= LocalDateTime.now(),
 
     @Column(nullable=false)
-    val updatedAt: LocalDateTime= LocalDateTime.now()
+    var updatedAt: LocalDateTime= LocalDateTime.now()
 )
