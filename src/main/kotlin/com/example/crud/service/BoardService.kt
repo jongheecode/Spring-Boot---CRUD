@@ -1,4 +1,5 @@
 package com.example.crud.service
+import com.example.crud.dto.BoardDto
 import com.example.crud.model.Board
 import com.example.crud.repository.BoardRepository
 import jakarta.persistence.EntityNotFoundException
