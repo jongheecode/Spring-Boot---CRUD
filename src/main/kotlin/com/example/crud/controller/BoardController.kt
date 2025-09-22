@@ -27,7 +27,7 @@ class BoardController(private val boardService: BoardService){
     }
 
     //2.id로 게시물 조회
-    @GetMapping
+    @GetMapping("/{id}")
     fun getBoardById(@PathVariable id: Long): ResponseEntity<Board>{ //PathVariable -> url 경로의 id를 파라미터로 받음
         val board=boardService.getBoardById(id)
         return ResponseEntity.ok(board)
