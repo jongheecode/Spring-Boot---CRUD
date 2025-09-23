@@ -41,6 +41,8 @@ class SecurityConfig(
                 auth
                     .requestMatchers("/api/auth/**").permitAll()
                     .requestMatchers(HttpMethod.GET, "/api/boards/**").permitAll()
+                    .requestMatchers(HttpMethod.DELETE,"/api/users/**").authenticated()
+                    //유저 삭제는 인증된 사용자만
                     .anyRequest().authenticated()
             }
 

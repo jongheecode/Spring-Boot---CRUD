@@ -1,10 +1,13 @@
 package com.example.crud.model
 
+import com.fasterxml.jackson.annotation.JsonIgnore
+import jakarta.persistence.CascadeType
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
+import jakarta.persistence.OneToMany
 import jakarta.persistence.Table
 import java.time.LocalDateTime
 
@@ -27,5 +30,9 @@ data class Board(
     val createdAt: LocalDateTime= LocalDateTime.now(),
 
     @Column(nullable=false)
-    var updatedAt: LocalDateTime= LocalDateTime.now()
+    var updatedAt: LocalDateTime= LocalDateTime.now(),
+
+    @OneToMany(mappedBy = "board", cascade = [CascadeType.ALL])
+    @JsonIgnore
+    val comments:List<Comment> = emptyList()
 )

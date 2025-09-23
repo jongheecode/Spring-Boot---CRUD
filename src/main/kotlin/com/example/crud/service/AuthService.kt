@@ -22,9 +22,9 @@ class AuthService(
         val newUser = User(
             studentId = authDto.studentId,
             password = encryptedPassword,
-            name = "", // 임시값
-            major = "", // 임시값
-            school = "" // 임시값
+            name = authDto.name, // 임시값
+            major = authDto.major, // 임시값
+            school = authDto.school // 임시값
         )
         return userRepository.save(newUser)
     }
