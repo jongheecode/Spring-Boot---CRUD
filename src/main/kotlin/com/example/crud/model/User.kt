@@ -20,6 +20,8 @@ data class User(
     @Column(nullable = false)
     val name: String,
     @Column(nullable = false)
+    val password: String,
+    @Column(nullable = false)
     val major: String,
     @Column(nullable = false)
     val school: String
