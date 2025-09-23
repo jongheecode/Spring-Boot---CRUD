@@ -3,8 +3,10 @@ package com.example.crud.controller
 import com.example.crud.dto.AuthDto
 import com.example.crud.model.User
 import com.example.crud.service.UserService
+import org.apache.coyote.Response
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -30,5 +32,11 @@ class UserController(private val userService: UserService){ // 3. 생성자 주�
         userService.deleteUser(studentId)
         return ResponseEntity.noContent().build()
         // 9. 상태 코드 204 (No Content)를 반환합니다.
+    }
+    @DeleteMapping("/my")
+    fun deleteMyAccount(): ResponseEntity<Void>{
+        val studentId= SecurityContextHolder.getContext().authentication.name
+        userService.deleteUser(studentId)
+        return ResponseEntity.noContent().build()
     }
 }

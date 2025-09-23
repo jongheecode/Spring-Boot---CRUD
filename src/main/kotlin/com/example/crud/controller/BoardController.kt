@@ -6,6 +6,7 @@ import com.example.crud.service.BoardService
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -56,5 +57,11 @@ class BoardController(private val boardService: BoardService){
     fun deleteBoard(@PathVariable id: Long): ResponseEntity<Void>{
         boardService.deleteBoard(id)
         return ResponseEntity.noContent().build()
+    }
+    @GetMapping("/{my}")
+    fun getMyBoards(): ResponseEntity<List<Board>>{
+        val studentId= SecurityContextHolder.getContext().authentication.name
+        val myBoards=boardService.getBoardByStudentId(studentId)
+        return ResponseEntity.ok(myBoards)
     }
 }

@@ -60,4 +60,8 @@ class BoardService(private val boardRepository: BoardRepository) {
 
         boardRepository.delete(board)
     }
+
+    fun getBoardByStudentId(studentId: String): List<Board>{
+        return boardRepository.findByStudentId(studentId)
+    }
 }
