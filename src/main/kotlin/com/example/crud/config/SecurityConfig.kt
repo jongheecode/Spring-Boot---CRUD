@@ -35,18 +35,21 @@ class SecurityConfig(
             .formLogin { it.disable() }
             .httpBasic { it.disable() }
             .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
+            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter::class.java)
 
         http
             .authorizeHttpRequests { auth ->
                 auth
+                    // 정적 파일 및 메인 페이지는 모두에게 허용
+                    .requestMatchers("/", "/index.html", "/styles.css", "/script.js", "/favicon.ico").permitAll()
+                    // 로그인/회원가입 API는 모두에게 허용
                     .requestMatchers("/api/auth/**").permitAll()
+                    // 게시물 조회는 모두에게 허용
                     .requestMatchers(HttpMethod.GET, "/api/boards/**").permitAll()
-                    .requestMatchers(HttpMethod.DELETE,"/api/users/**").authenticated()
-                    //유저 삭제는 인증된 사용자만
+                    // 나머지 모든 요청은 인증 필요
                     .anyRequest().authenticated()
             }
-
-        http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter::class.java)
+            .exceptionHandling { it.authenticationEntryPoint(null) }
 
         return http.build()
     }

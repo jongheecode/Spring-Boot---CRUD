@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>학교 게시판</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+    <h1>학교 게시판</h1>
+</header>
+<main>
+    <section id="auth-section">
+        <button id="show-login">로그인</button>
+        <button id="show-register">회원가입</button>
+        <button id="logout-button" style="display:none;">로그아웃</button>
+        <button id="my-posts-button" style="display:none;">내 게시물</button>
+        <button id="new-post-button" style="display:none;">새 게시물</button>
+    </section>
+
+    <section id="auth-form-section" style="display:none;">
+        <div id="register-form" style="display:none;">
+            <h2>회원가입</h2>
+            <input type="text" id="register-student-id" placeholder="학번" required>
+            <input type="password" id="register-password" placeholder="비밀번호" required>
+            <input type="text" id="register-name" placeholder="이름" required>
+            <input type="text" id="register-major" placeholder="학과" required>
+            <input type="text" id="register-school" placeholder="학교" required>
+            <button id="register-button">가입하기</button>
+            <button id="hide-register-form">취소</button>
+        </div>
+
+        <div id="login-form" style="display:none;">
+            <h2>로그인</h2>
+            <input type="text" id="login-student-id" placeholder="학번" required>
+            <input type="password" id="login-password" placeholder="비밀번호" required>
+            <button id="login-button">로그인하기</button>
+            <button id="hide-login-form">취소</button>
+        </div>
+    </section>
+
+    <section id="board-list-section">
+        <h2>전체 게시물</h2>
+        <ul id="board-list">
+        </ul>
+    </section>
+
+    <section id="board-detail-section" style="display:none;">
+        <h2 id="board-detail-title"></h2>
+        <div id="board-detail-author-info"></div>
+        <div id="board-detail-content"></div>
+        <p><small id="board-detail-date"></small></p>
+        <div id="comment-section">
+            <h3>댓글</h3>
+            <ul id="comment-list"></ul>
+            <div id="comment-form-container" style="display:none;">
+                <textarea id="comment-content" placeholder="댓글을 입력하세요..." rows="3"></textarea>
+                <button id="submit-comment-button">댓글 작성</button>
+            </div>
+        </div>
+        <button id="back-to-list-button">목록으로</button>
+    </section>
+
+    <section id="new-post-section" style="display:none;">
+        <h2>새 게시물 작성</h2>
+        <input type="text" id="post-title" placeholder="제목을 입력하세요..." required>
+        <textarea id="post-content" rows="10" placeholder="내용을 입력하세요..." required></textarea>
+        <button id="submit-post-button">작성하기</button>
+        <button id="cancel-post-button">취소</button>
+    </section>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,6 +1,7 @@
 package com.example.crud.controller
 
 import com.example.crud.dto.AuthDto
+import com.example.crud.dto.LoginDto
 import com.example.crud.service.AuthService
 import com.example.crud.util.JwtUtil
 import jakarta.validation.Valid
@@ -26,8 +27,8 @@ class AuthApiController(
     }
 
     @PostMapping("/login")
-    fun login(@Valid @RequestBody authDto: AuthDto): ResponseEntity<Any>{
-        val user = authService.authenticate(authDto)
+    fun login(@Valid @RequestBody loginDto: LoginDto): ResponseEntity<Any>{
+        val user = authService.authenticate(loginDto.studentId,loginDto.password)
             ?: return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인 실패")
 
         val token = jwtUtil.createToken(user.studentId) // JWT 토큰 생성

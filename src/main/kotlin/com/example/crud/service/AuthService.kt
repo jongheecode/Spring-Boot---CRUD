@@ -29,9 +29,9 @@ class AuthService(
         return userRepository.save(newUser)
     }
 
-    fun authenticate(authDto: AuthDto): User? {
-        val user = userRepository.findByStudentId(authDto.studentId)
-        if (user != null && passwordEncoder.matches(authDto.password, user.password)) {
+    fun authenticate(studentId: String,password: String): User? {
+        val user = userRepository.findByStudentId(studentId)
+        if (user != null && passwordEncoder.matches(password, user.password)) {
             return user
         }
         return null
